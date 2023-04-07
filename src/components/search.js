@@ -10,7 +10,8 @@ const Search = () => {
     // console.log(state)
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/posts/${state}`, {
-            method : 'GET'
+            method : 'GET',
+            mode: 'cors'
         })
         .then(res => {
             if (res.status === 400) {

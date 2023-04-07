@@ -13,7 +13,9 @@ const Add = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // do something with the form data
-    fetch('http://20.74.186.220:8000/posts', {
+    // fetch('http://20.74.186.220:8000/posts', {
+    fetch('http://127.0.0.1:8000/posts', {
+
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

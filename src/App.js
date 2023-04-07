@@ -4,6 +4,7 @@ import Main from './components/main';
 import Edit from './components/edit';
 import Add from './components/add';
 import Latest from './components/latest';
+import Search from './components/search';
 
 function App() {
   return ( 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/edit' element={<Edit/>} />
           <Route path='/add' element={<Add/>} />
           <Route path='/latest' element={<Latest/>} />
+          <Route path='/search' element={<Search/>} />
       </Routes>
     </BrowserRouter>
   )

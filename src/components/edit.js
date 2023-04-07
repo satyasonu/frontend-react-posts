@@ -11,7 +11,9 @@ const Edit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // do something with the form data
-    fetch('http://20.74.186.220:8000/posts/' + state.id, {
+    // fetch('http://20.74.186.220:8000/posts/' + state.id, {
+    fetch('http://127.0.0.1:8000/posts/' + state.id, {
+
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -67,7 +69,7 @@ const Edit = () => {
           required
         ></input>
       </div>
-      <button type="submit">Submit</button><br></br>
+      <Link to="/read"><button type="submit">Submit</button></Link><br></br>
       <Link to="/read"><button>Cancel</button></Link><br></br>
     </form>
   );

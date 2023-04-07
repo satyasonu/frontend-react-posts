@@ -9,7 +9,9 @@ export default function Latest(){
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://20.74.186.220:8000/posts/latest')
+    // fetch('http://20.74.186.220:8000/posts/latest')
+    fetch('http://127.0.0.1:8000/posts/latest')
+
       .then(response => (response.json()))
       .then(data => {
         setData(data['Latest Post']);

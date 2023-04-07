@@ -6,10 +6,12 @@ export default function Read(){
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [s, setS] = useState("")
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('http://20.74.186.220:8000/posts')
+    // fetch('http://20.74.186.220:8000/posts')
+    fetch('http://127.0.0.1:8000/posts')
       .then(response => (response.json()))
       .then(data => {
         setData(data.data);
@@ -37,6 +39,9 @@ export default function Read(){
         <Link to="/latest"><button>Latest Post</button></Link>
         <Link to = '/add'><button>Add a new post</button></Link>
         <Link to = '/'><button>Go Home</button></Link>
+        <input type='text' id='id' value={s} placeholder='Enter ID'  onChange={(e) => (setS(e.target.value))}></input>
+        <button ><Link to = '/search' state={s}>Search</Link></button>
+
       </div>
     
       <table className='tableRead' style={{ border: '1px solid black', borderColor: 'black' }}>

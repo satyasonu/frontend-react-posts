@@ -10,8 +10,8 @@ export default function Read(){
 
   useEffect(() => {
     setIsLoading(true);
-    // fetch('http://20.74.186.220:8000/posts')
-    fetch('http://127.0.0.1:8000/posts',{
+    fetch('/posts', {
+    // fetch('http://127.0.0.1:8000/posts',{
       mode: 'cors'
     })
       .then(response => (response.json()))

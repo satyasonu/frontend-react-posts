@@ -9,7 +9,7 @@ const Search = () => {
     const [published, setPublished] = useState("")
     // console.log(state)
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/posts/${state}`, {
+        fetch(`/posts/${state}`, {
             method : 'GET',
             mode: 'cors'
         })

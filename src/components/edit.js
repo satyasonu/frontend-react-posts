@@ -60,7 +60,7 @@ const Edit = () => {
 
   return (
     <form onSubmit={handleSubmit} className="centered-form">
-      <Link to="/"><button>Home</button></Link>
+      <Link to="/"><button disabled= {show}>Home</button></Link>
       { show && <p>You will be redirected to the main page in {count} seconds...</p>}
       <div>
         <label htmlFor="id">ID:</label>
@@ -101,8 +101,8 @@ const Edit = () => {
           onChange={(e) => setPublished(e.target.value)}
           required
         ></input>
-      </div><button type="submit">Submit</button><br></br>
-      <Link to="/read"><button>Cancel</button></Link><br></br>
+      </div><button type="submit" disabled= {show}>Submit</button><br></br>
+      <Link to="/read"><button disabled= {show}>Cancel</button></Link><br></br>
       <div>
         {show && <p style={styles}>Data Updated Successfully!</p>}
       </div>

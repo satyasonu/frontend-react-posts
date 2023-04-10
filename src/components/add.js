@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const styles = {
     color: 'green'
   }
@@ -9,6 +9,8 @@ const Add = () => {
   const [content, setContent] = useState("");
   const [published, setPublished] = useState("");
   const [show, setShow] = useState(false); 
+  const navigate = useNavigate();
+  const [count, setCount] = useState(10);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,14 +33,33 @@ const Add = () => {
       .then(data =>{ console.log(data)})
       .catch(error => console.error(error))
     // console.log( {id, title, content, published} );
-    setTitle("")
-    setContent("")
-    setPublished("")
+    // setTitle("")
+    // setContent("")
+    // setPublished("")
+    const timeoutId = setTimeout(() => {
+      navigate('/read');
+    }, 10000);
+    const timer = setInterval(() => {
+      setCount(count => {
+        if (count === 0) {
+          clearInterval(timer);
+        }
+        else{
+        return count - 1;}
+      });
+    }, 1000);
+    // return () => 
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(timer);
+    };
   };
 
   return (
     <form onSubmit={handleSubmit} className="centered-form">
-      <Link to="/read"><button>Back</button></Link><br></br>
+      <Link to="/read" disabled= {show}><button disabled= {show}>Back</button></Link><br></br>
+      { show && <p>You will be redirected to the main page in {count} seconds...</p>}
       <div>
         <label htmlFor="title">Title:</label>
         <input
@@ -68,8 +89,8 @@ const Add = () => {
           required
         ></input>
       </div>
-      <button type="submit">Submit</button><br></br>
-      <Link to="/"><button>Home</button></Link>
+      <button type="submit" disabled= {show}>Submit</button><br></br>
+      <Link to="/"><button disabled= {show}>Home</button></Link>
       <div>
         {show && <p style={styles}>Data Submitted Successfully!</p>}
       </div>

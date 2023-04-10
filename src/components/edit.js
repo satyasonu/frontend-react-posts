@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate   } from "react-router-dom";
 
 const Edit = () => {
     const { state } = useLocation();
   const [title, setTitle] = useState(state.title);
   const [content, setContent] = useState(state.content);
   const [published, setPublished] = useState(state.published);
-  const [id, setId] = useState(state.id);  
+  const [id, setId] = useState(state.id); 
+  const [show, setShow] = useState(false);  
+  const navigate = useNavigate();
+  const [count, setCount] = useState(10);
+  const styles = {
+    color: 'green'
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,15 +27,41 @@ const Edit = () => {
       },
       body: JSON.stringify({title : title, content : content, published: published })
     })
-      .then(response => response.json())
+      .then(response => {
+        if(response.status === 200){
+          setShow(true);
+          response.json();
+        }
+      })
       // .then(data => console.log(data))
       .catch(error => console.error(error))
     // console.log( {id, title, content, published} );
+    const timeoutId = setTimeout(() => {
+      navigate('/read');
+    }, 10000);
+    const timer = setInterval(() => {
+      setCount(count => {
+        if (count === 0) {
+          clearInterval(timer);
+        }
+        else{
+        return count - 1;}
+      });
+    }, 1000);
+    // return () => 
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(timer);
+    };
   };
+ 
+  
 
   return (
     <form onSubmit={handleSubmit} className="centered-form">
       <Link to="/"><button>Home</button></Link>
+      { show && <p>You will be redirected to the main page in {count} seconds...</p>}
       <div>
         <label htmlFor="id">ID:</label>
         <input
@@ -69,9 +101,11 @@ const Edit = () => {
           onChange={(e) => setPublished(e.target.value)}
           required
         ></input>
-      </div>
-      <Link to="/read"><button type="submit">Submit</button></Link><br></br>
+      </div><button type="submit">Submit</button><br></br>
       <Link to="/read"><button>Cancel</button></Link><br></br>
+      <div>
+        {show && <p style={styles}>Data Updated Successfully!</p>}
+      </div>
     </form>
   );
 };

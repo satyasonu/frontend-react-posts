@@ -2,22 +2,15 @@
 
 FROM node:18.15.0-alpine3.16 As build
 WORKDIR /app
-COPY . /app
+COPY package*.json /app/
 RUN npm install
+COPY . .
 RUN npm run build
 # EXPOSE 3000
 # CMD ["npm", "start"]
 
 # STAGE 2
 
-FROM node:18.15.0-alpine3.16
+FROM nginx:alpine
 
-WORKDIR /app
-
-RUN npm install -g webserver.local
-
-COPY --from=build /app/build ./build
-
-EXPOSE 3000
-
-CMD webserver.local -d ./build
+COPY --from=build /app/build/ /usr/share/nginx/html

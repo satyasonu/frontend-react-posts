@@ -2,8 +2,9 @@
 
 FROM node:18.15.0-alpine3.16 As build
 WORKDIR /app
-COPY . /app/
-RUN yarn
+COPY package.json ./
+RUN yarn install
+COPY . /app
 RUN yarn build
 # RUN npm install
 # RUN npm run build
@@ -12,12 +13,10 @@ RUN yarn build
 
 # STAGE 2
 
-FROM nginx:alpine
+FROM nginx:stable-alpine
 
 COPY --from=build /app/build /usr/share/nginx/html
 
-COPY --from=buid /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
 EXPOSE 3000
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -13,8 +13,9 @@ RUN npm run build
 
 FROM nginx:alpine
 
-COPY --from=build /app/build/ /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=buid /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 3000 80
+EXPOSE 3000
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

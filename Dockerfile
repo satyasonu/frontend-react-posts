@@ -9,7 +9,7 @@ RUN npm run build
 
 # STAGE 2
 
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine3.17-slim
 
 #RUN cd /var/www/ && mkdir frontendReact
 

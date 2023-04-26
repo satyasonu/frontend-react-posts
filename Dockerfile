@@ -3,19 +3,19 @@
 FROM node:18.15.0-alpine3.16 As build
 WORKDIR /app
 COPY package.json ./
-RUN yarn install
+RUN npm install
 COPY . /app
-RUN yarn build
-# RUN npm install
-# RUN npm run build
-# EXPOSE 3000
-# CMD ["npm", "start"]
+RUN npm run build
 
 # STAGE 2
 
 FROM nginx:stable-alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
+RUN mkdir /var/www/frontendReact
+
+COPY --from=build /app/build /var/www/frontendReact/
+
+COPY --from=build /app/frontend-react-posts/reactFrontend/nginx/* /etc/nginx/sites-enabled/
 
 EXPOSE 3000
 

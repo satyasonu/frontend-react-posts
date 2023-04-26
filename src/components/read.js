@@ -27,11 +27,11 @@ export default function Read(){
   }, []);
 
   if (isLoading) {
-    return <div className='topbtn'>Loading...</div>;
+    return <div className='topbtn'>Loading...<Link to="/"><button>Back</button></Link></div>;
   }
 
   if (error) {
-    return <div className='topbtn'>Error: {error.message}. Please refresh to see error. If it still persists, mail to sbssunu@gmail.com</div>;
+    return <div className='topbtn'>Error: {error.message}. Please refresh to see error. If it still persists, mail to sbssunu@gmail.com<Link to="/"><button>Back</button></Link></div>;
   }
 
   return ( 

@@ -1,0 +1,18 @@
+server {
+       listen 3000;
+       listen [::]:3000;
+
+       #server_name example.ubuntu.com;
+
+       root /var/www/frontendReact;
+       index index.html;
+
+       location / {
+               try_files $uri $uri/ =404;
+       }
+
+	location /posts {
+		proxy_set_header X-Forwarded-Host $host;
+		proxy_pass   http://20.74.186.220:8000$request_uri;
+	}
+}

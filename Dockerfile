@@ -11,7 +11,7 @@ RUN npm run build
 
 FROM nginx:stable-alpine
 
-RUN mkdir /var/www/frontendReact
+RUN cd /var/www/ && mkdir frontendReact
 
 COPY --from=build /app/build /var/www/frontendReact/
 

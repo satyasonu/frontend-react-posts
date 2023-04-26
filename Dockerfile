@@ -11,11 +11,11 @@ RUN npm run build
 
 FROM nginx:stable-alpine
 
-RUN cd /var/www/ && mkdir frontendReact
+#RUN cd /var/www/ && mkdir frontendReact
 
-COPY --from=build /app/build /var/www/frontendReact/
+COPY --from=build /app/build /usr/share/nginx/html/
 
-COPY --from=build /app/frontend-react-posts/reactFrontend/nginx/* /etc/nginx/sites-enabled/
+COPY --from=build /app/frontend-react-posts/nginx/* /etc/nginx/conf.d/*
 
 EXPOSE 3000
 

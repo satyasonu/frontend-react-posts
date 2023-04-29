@@ -60,6 +60,7 @@ const Edit = () => {
 
   return (
     <form onSubmit={handleSubmit} className="centered-form">
+      <div className="scroll">WARNING! DO NOT REFRESH THIS PAGE.</div>
       <Link to="/"><button disabled= {show}>Home</button></Link>
       { show && <p>You will be redirected to the main page in {count} seconds...</p>}
       <div>

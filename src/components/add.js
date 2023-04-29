@@ -58,6 +58,7 @@ const Add = () => {
 
   return (
     <form onSubmit={handleSubmit} className="centered-form">
+      <div className="scroll">WARNING! DO NOT REFRESH THIS PAGE.</div>
       <Link to="/read" disabled= {show}><button disabled= {show}>Back</button></Link><br></br>
       { show && <p>You will be redirected to the main page in {count} seconds...</p>}
       <div>

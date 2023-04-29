@@ -5,10 +5,10 @@ export default function Latest(){
   const [data, setData] = useState([]);
   const [published, setPublished] = useState("")
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     // fetch('http://20.74.186.220:8000/posts/latest')
     fetch('/posts/latest',{
       mode: 'cors'
@@ -18,17 +18,17 @@ export default function Latest(){
         setData(data['Latest Post']);
         setPublished(data['Latest Post']['published'].toString());
         // console.log((data['Latest Post']['published'].toString()))
-        setIsLoading(false);
+        // setIsLoading(false);
       })
       .catch(error => {
         setError(error);
-        setIsLoading(false);
+        // setIsLoading(false);
       });
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   if (error) {
     return <div>Error: {error.message}. Please refresh to see error. If it still persists, mail to sbssunu@gmail.com</div>;
@@ -36,6 +36,7 @@ export default function Latest(){
 
   return ( 
     <div>
+      <div className="scroll">WARNING! DO NOT REFRESH THIS PAGE.</div>
       <div className='topbtn'>
         <Link to="/"><button>Back</button></Link>
         {/* <Link to="/latest"><button>Latest Post</button></Link> */}

@@ -5,11 +5,11 @@ import '../index.css'
 export default function Read(){
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [s, setS] = useState("")
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     fetch('/posts', {
     // fetch('http://127.0.0.1:8000/posts',{
       mode: 'cors'
@@ -18,17 +18,17 @@ export default function Read(){
       .then(data => {
         setData(data.data);
         // console.log(data)
-        setIsLoading(false);
+        // setIsLoading(false);
       })
       .catch(error => {
         setError(error);
-        setIsLoading(false);
+        // setIsLoading(false);
       });
   }, []);
 
-  if (isLoading) {
-    return <div className='topbtn'>Loading...<Link to="/"><button>Back</button></Link></div>;
-  }
+  // if (isLoading) {
+  //   return <div className='topbtn'>Loading...<Link to="/"><button>Back</button></Link></div>;
+  // }
 
   if (error) {
     return <div className='topbtn'>Error: {error.message}. Please refresh to see error. If it still persists, mail to sbssunu@gmail.com<Link to="/"><button>Back</button></Link></div>;
@@ -36,6 +36,7 @@ export default function Read(){
 
   return ( 
     <div>
+      <div className="scroll">WARNING! DO NOT REFRESH THIS PAGE.</div>
       <div className='topbtn'>
         <Link to="/"><button>Back</button></Link>
         <Link to="/latest"><button>Latest Post</button></Link>

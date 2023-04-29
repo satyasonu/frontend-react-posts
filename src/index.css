@@ -52,3 +52,19 @@ Link{
   width: 100%;
   max-width: 400px;
 }
+
+
+.scroll {
+  animation: scroll 50s linear infinite;
+  color: rgb(255, 0, 0);
+  text-size-adjust: 100px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -39,6 +39,8 @@ const Search = () => {
     else if(data !== undefined)
       return (
             <div >
+                <div className="scroll">WARNING! DO NOT REFRESH THIS PAGE.</div>
+
                 <div className='topbtn'>
                     <Link to="/read"><button>Back</button></Link>
                     <Link to="/latest"><button>Latest Post</button></Link>

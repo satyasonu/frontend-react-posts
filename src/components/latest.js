@@ -38,7 +38,7 @@ export default function Latest(){
     <div>
       <div className='topbtn'>
         <Link to="/"><button>Back</button></Link>
-        <Link to="/latest"><button>Latest Post</button></Link>
+        {/* <Link to="/latest"><button>Latest Post</button></Link> */}
         <Link to = '/add'><button>Add a new post</button></Link>
         <Link to = '/'><button>Go to Home</button></Link>
       </div>
